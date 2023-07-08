@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TodoListController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,6 +35,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // TodoList
+    Route::get('/todolist', [TodoListController::class, 'index'])->name('todolist.index');
+    Route::get('/todolist/{todo_list_item_id}', [TodoListController::class, 'show'])->name('todolist.show');
+
+    // Setting
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
 });
+
+
 
 require __DIR__.'/auth.php';
