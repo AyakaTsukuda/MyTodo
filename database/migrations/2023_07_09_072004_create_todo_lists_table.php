@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId("rate_label_setting_id")->cascadeOnUpdate()->nullOnDelete()->constrained();
             $table->timestamps();
             $table->softDeletes();
-            
         });
     }
 
