@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('todo_lists', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_id");
+            $table->foreignId("user_id")->cascadeOnUpdate()->cascadeOnDelete()->constrained();
             $table->string("title")->nullable();
-            $table->unsignedBigInteger("current_mark_id")->default(1);
-            $table->unsignedBigInteger("rate_label_setting_id");
+            $table->foreignId("current_mark_id")->default(1)->cascadeOnUpdate()->nullOnDelete()->constrained("marks");
+            $table->foreignId("rate_label_setting_id")->cascadeOnUpdate()->nullOnDelete()->constrained();
             $table->timestamps();
             $table->softDeletes();
+            
         });
     }
 

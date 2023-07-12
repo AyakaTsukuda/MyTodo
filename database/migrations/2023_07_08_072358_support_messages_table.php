@@ -11,7 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('support_messages', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId("mark_id")->cascadeOnUpdate()->nullOnDelete()->constrained();
+            $table->string("message",256);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('support_messages');
     }
 };

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('marks', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->string("class_name",255);
             $table->timestamps();
         });
     }

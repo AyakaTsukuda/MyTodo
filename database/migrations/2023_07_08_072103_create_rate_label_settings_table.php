@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('rate_label_settings', function (Blueprint $table) {
             $table->id();
+            $table->string("label_name");
+            $table->integer("num_of_use");
+            $table->foreignId("user_id")->cascadeOnUpdate()->cascadeOnDelete()->constrained();
             $table->timestamps();
         });
     }
