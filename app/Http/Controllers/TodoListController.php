@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TodoList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 
@@ -10,7 +12,10 @@ class TodoListController extends Controller
 {
     public function index()
     {
-        return Inertia::render("TodoList/Index");
+        $todo_lists = TodoList::mine()->get();
+
+        return Inertia::render("TodoList/Index")
+            ->with("todoLists", $todo_lists);
     }
 
 
