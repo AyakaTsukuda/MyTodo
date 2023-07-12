@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class RateLavelSetting extends Model
@@ -15,7 +16,8 @@ class RateLavelSetting extends Model
     protected $fillable =[
         "label_name",
         "num_of_use",
-        "user_id"
+        "user_id",
+        "created_at"
     ];
 
 
@@ -34,5 +36,11 @@ class RateLavelSetting extends Model
     public function mark(): HasOneThrough
     {
         return $this->through("rate_settings")->has("marks");
+    }
+
+
+    public function todoList(): HasOne
+    {
+        return $this->hasOne(TodoList::class);
     }
 }

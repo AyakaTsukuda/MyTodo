@@ -13,7 +13,8 @@ class Mark extends Model
 
     protected $fillable =[
         "name",
-        "class_name"
+        "class_name",
+        "created_at"
     ];
 
 

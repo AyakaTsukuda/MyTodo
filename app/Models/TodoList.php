@@ -17,6 +17,7 @@ class TodoList extends Model
         "title",
         "current_mark_id",
         "rate_label_setting_id",
+        "created_at"
     ];
 
 
