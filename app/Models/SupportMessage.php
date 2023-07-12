@@ -12,7 +12,8 @@ class SupportMessage extends Model
 
     protected $fillable = [
         "mark_id",
-        "message"
+        "message",
+        "created_at"
     ];
 
 

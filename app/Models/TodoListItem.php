@@ -13,7 +13,8 @@ class TodoListItem extends Model
     protected $fillable = [
         "todo_list_id",
         "checked",
-        "item"
+        "item",
+        "created_at"
     ];
 
 

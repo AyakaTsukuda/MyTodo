@@ -13,7 +13,8 @@ class RateSetting extends Model
     protected $fillable = [
         "mark_id",
         "rate_label_setting_id",
-        "percent"
+        "percent",
+        "created_at"
     ];
 
 
