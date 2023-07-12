@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             MarkSeeder::class,
-            SupportMessageSeeder::class
+            SupportMessageSeeder::class,
+            RateLabelSettingSeeder::class,
+            RateSettingSeeder::class
         ]);
     }
 }
