@@ -1,10 +1,16 @@
-import React from "react"
+import { React,useState } from "react"
 import { Head } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
-import Page from "@/Layouts/Page";
+import Display from "@/Layouts/Display";
+import Section from "@/Layouts/Section";
+import TodoListForm from "@/Components/TodoList/TodoListForm";
 import TodoListTable from "@/Components/TodoList/TodoListTable";
+import PrimaryButton from "@/Components/PrimaryButton";
+
 
 const Index = ({auth, todoLists}) => {
+
+    const [ isCreateFormShow, setIsCreateFormShow ] = useState(false)
 
 
     return(<Layout
@@ -13,9 +19,21 @@ const Index = ({auth, todoLists}) => {
     >
         <Head title="Todo List" />
 
-        <Page>
-            <TodoListTable todoLists={todoLists} />
-        </Page>
+        <Display>
+            {!isCreateFormShow && <div className="mb-6 flex justify-end">
+                <PrimaryButton onClick={()=>setIsCreateFormShow(!isCreateFormShow)}>
+                    create
+                </PrimaryButton>
+            </div>}
+
+            {isCreateFormShow && <Section>
+                <TodoListForm setIsCreateFormShow={setIsCreateFormShow} />
+            </Section>}
+
+            <Section>
+                <TodoListTable todoLists={todoLists} />
+            </Section>
+        </Display>
 
     </Layout>)
 }
