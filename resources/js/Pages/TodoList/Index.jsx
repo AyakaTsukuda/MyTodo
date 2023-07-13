@@ -8,7 +8,7 @@ import TodoListTable from "@/Components/TodoList/TodoListTable";
 import PrimaryButton from "@/Components/PrimaryButton";
 
 
-const Index = ({auth, todoLists}) => {
+const Index = ({auth, todoLists, rateLabelSettings}) => {
 
     const [ isCreateFormShow, setIsCreateFormShow ] = useState(false)
 
@@ -20,14 +20,14 @@ const Index = ({auth, todoLists}) => {
         <Head title="Todo List" />
 
         <Display>
-            {!isCreateFormShow && <div className="mb-6 flex justify-end">
+            {!isCreateFormShow && <div className="mb-4 flex justify-end">
                 <PrimaryButton onClick={()=>setIsCreateFormShow(!isCreateFormShow)}>
                     create
                 </PrimaryButton>
             </div>}
 
             {isCreateFormShow && <Section>
-                <TodoListForm setIsCreateFormShow={setIsCreateFormShow} />
+                <TodoListForm setIsCreateFormShow={setIsCreateFormShow} rateLabelSettings={rateLabelSettings} />
             </Section>}
 
             <Section>
