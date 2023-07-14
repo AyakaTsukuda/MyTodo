@@ -11,7 +11,7 @@ const TodoListForm = ({setIsCreateFormShow, rateLabelSettings}) => {
 
     const {data, setData, post, errors, processing} = useForm({
         title: "",
-        rate_label_setting_id : 1
+        rateLabelSettingId : 1
     })
 
     const handleSubmit = (e) => {
@@ -27,7 +27,9 @@ const TodoListForm = ({setIsCreateFormShow, rateLabelSettings}) => {
             </div>
             <div className="inline-block w-[calc(40%_-_0.5rem)]">
                 <InputLabel value="Mark設定" />
-                <Select className="w-full"/> {/* @todo: 中身のデータ正しくする & デザインがダサい。 */}
+                <Select>
+                    
+                </Select>
             </div>
             <div className="mt-4 flex gap-2 justify-center">
                 <SecondaryButton type="button" onClick={()=>setIsCreateFormShow(false)}>Cancel</SecondaryButton>
