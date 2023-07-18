@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const Show = ({}) => {
+const Show = ({todo_list_id}) => {
 
     return(<div>
         TodoList Show page here...

@@ -6,6 +6,7 @@ import Section from "@/Layouts/Section";
 import TodoListForm from "@/Components/TodoList/TodoListForm";
 import TodoListTable from "@/Components/TodoList/TodoListTable";
 import PrimaryButton from "@/Components/PrimaryButton";
+import SecondaryButton from "@/Components/SecondaryButton";
 
 
 const Index = ({auth, todoLists, rateLabelSettings}) => {
@@ -27,6 +28,10 @@ const Index = ({auth, todoLists, rateLabelSettings}) => {
             </div>}
 
             {isCreateFormShow && <Section>
+                <div className="mb-4 flex justify-between gap-2">
+                    <div className="font-bold">Todo List Create</div>
+                    <SecondaryButton type="button" onClick={()=>setIsCreateFormShow(false)}>Cancel</SecondaryButton>
+                </div>
                 <TodoListForm setIsCreateFormShow={setIsCreateFormShow} rateLabelSettings={rateLabelSettings} />
             </Section>}
 

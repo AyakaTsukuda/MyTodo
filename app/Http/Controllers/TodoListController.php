@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoListCreateRequest;
 use App\Models\RateLabelSetting;
 use App\Models\TodoList;
 use Illuminate\Http\Request;
@@ -23,19 +24,36 @@ class TodoListController extends Controller
     }
 
 
-    public function show(String $todo_list_item_id)
+    public function store(TodoListCreateRequest $request)
     {
-        return Inertia::render("TodoList/Show");
+        $todo_list = new TodoList([
+            "user_id"               => Auth::user()->id,
+            "title"                 => $request->title,
+            "rate_label_setting_id" => $request->rate_label_setting_id
+        ]);
+        $todo_list->save();
+
+        return redirect()->route("todolist.show", $todo_list->id);
     }
 
 
-    public function update(String $todo_list_item_id)
+    public function show(String $todo_list_id)
+    {
+        $todo_list = TodoList::findOrFail($todo_list_id);
+
+        return Inertia::render("TodoList/Show")
+            ->with("todo_list", $todo_list)
+            ->with("todo_list_items", $todo_list->todo_list_items);
+    }
+
+
+    public function update(String $todo_list_id)
     {
         // update...
     }
 
 
-    public function destroy(String $todo_list_item_id)
+    public function destroy(String $todo_list_id)
     {
         // destroy...
     }
