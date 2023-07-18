@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Support\Facades\Auth;
 
-class RateLavelSetting extends Model
+class RateLabelSetting extends Model
 {
     use HasFactory;
 
@@ -29,7 +31,7 @@ class RateLavelSetting extends Model
 
     public function rateSettings(): HasMany
     {
-        return $this->hasMany(RateSetting::class);
+        return $this->hasMany(RateSetting::class)->with("mark");
     }
 
 
@@ -42,5 +44,17 @@ class RateLavelSetting extends Model
     public function todoList(): HasOne
     {
         return $this->hasOne(TodoList::class);
+    }
+
+
+    /* ===========
+        Scope
+    =========== */
+    public function scopeMine(Builder $builder)
+    {
+        $builder
+            ->select("rate_label_settings.*")
+            ->where("user_id", Auth::user()->id)
+            ->orWhere("user_id", null);
     }
 }

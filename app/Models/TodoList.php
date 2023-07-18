@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class TodoList extends Model
 {
@@ -36,5 +38,15 @@ class TodoList extends Model
     public function rateLabelSetting(): BelongsTo
     {
         return $this->belongsTo(rateLabelSetting::class);
+    }
+
+
+    /* ===========
+        Scope
+    =========== */
+    public function scopeMine(Builder $builder)
+    {
+        $builder->select("todo_lists.*")
+            ->where("user_id", Auth::user()->id);
     }
 }
