@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.list-header {
+    display: flex;
+    padding-left: 0.5rem;
+    background-color: rgb(249 250 251);
+    border-bottom: 1px solid rgb(229 231 235);
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.5rem;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+    font-size: 0.875rem; /* 14px */
+    border-bottom: 1px solid rgb(229 231 235);
+}
+
+.text-xxs {
+    font-size: 0.5rem;
+    line-height: 0;
+}

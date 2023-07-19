@@ -21,12 +21,14 @@ const Index = ({auth, todoLists, rateLabelSettings}) => {
         <Head title="Todo List" />
 
         <Display>
+            {/* navigation btn */}
             {!isCreateFormShow && <div className="mb-4 flex justify-end">
                 <PrimaryButton onClick={()=>setIsCreateFormShow(!isCreateFormShow)}>
                     create
                 </PrimaryButton>
             </div>}
 
+            {/* create form */}
             {isCreateFormShow && <Section>
                 <div className="mb-4 flex justify-between gap-2">
                     <div className="font-bold">Todo List Create</div>
@@ -35,6 +37,7 @@ const Index = ({auth, todoLists, rateLabelSettings}) => {
                 <TodoListForm setIsCreateFormShow={setIsCreateFormShow} rateLabelSettings={rateLabelSettings} />
             </Section>}
 
+            {/* todo list */}
             <Section>
                 <TodoListTable todoLists={todoLists} />
             </Section>
