@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("title")->nullable();
             $table->foreignId("current_mark_id")->default(1)->cascadeOnUpdate()->nullOnDelete()->constrained("marks");
             $table->foreignId("rate_label_setting_id")->cascadeOnUpdate()->nullOnDelete()->constrained();
+            $table->integer("current_percent")->default("0");
             $table->timestamps();
             $table->softDeletes();
         });
