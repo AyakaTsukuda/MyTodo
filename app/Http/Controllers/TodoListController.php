@@ -14,7 +14,7 @@ class TodoListController extends Controller
 {
     public function index()
     {
-        $todo_lists = TodoList::mine()->get();
+        $todo_lists = TodoList::with(['currentMark','rateLabelSetting'])->mine()->get();
 
         $rate_label_settings = RateLabelSetting::mine()->with("rateSettings")->get();
 

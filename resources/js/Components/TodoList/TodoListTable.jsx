@@ -1,4 +1,5 @@
 import React from "react";
+import TodoListTableItem from "./TodoListTableItem";
 
 
 const TodoListTable = ({todoLists}) => {
@@ -6,15 +7,19 @@ const TodoListTable = ({todoLists}) => {
     const has_list = todoLists.length > 0 ? true : false
 
     const tableItem = todoLists.map((item, index)=>{
-        return <li key={index}>{item.title}</li>
+        return <TodoListTableItem todoList={item} key={index} />
     });
+
 
     return(<div>
         {has_list && <div>
-            <label className="font-bold">Todo List</label>
-            <ul>
-                {tableItem}
-            </ul>
+            <div className="mb-6 font-bold">Todo List</div>
+            <div className="list-header">
+                <div className="w-24">更新日</div>
+                <div className="flex-1">タイトル</div>
+                <div className="flex-1">達成率</div>
+            </div>
+            {tableItem}
         </div>}
 
         {!has_list && <div>

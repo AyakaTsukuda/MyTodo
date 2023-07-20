@@ -10,6 +10,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Marks -->
+        <script src="https://kit.fontawesome.com/9738fa3d4a.js" crossorigin="anonymous"></script>
+
         <!-- Scripts -->
         @routes
         @viteReactRefresh
