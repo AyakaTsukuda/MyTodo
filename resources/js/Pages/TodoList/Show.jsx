@@ -41,7 +41,9 @@ const Show = ({todo_list, todo_list_items, auth, ...props}) => {
                 </div>
 
                 {/* Todo List */}
-                {TodoListItemLine}
+                <div className="pt-6">
+                    {TodoListItemLine}
+                </div>
 
                 {/* Create Form */}
                 <TodoListCreateForm todoList={todo_list}/>
