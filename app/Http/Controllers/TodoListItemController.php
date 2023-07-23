@@ -42,4 +42,14 @@ class TodoListItemController extends Controller
 
         return redirect()->back();
     }
+
+
+    public function destroy(String $todo_list_item_id)
+    {
+        $todo_list_item = TodoListItem::findOrFail($todo_list_item_id);
+
+        $todo_list_item->delete();
+
+        return redirect()->back();
+    }
 }

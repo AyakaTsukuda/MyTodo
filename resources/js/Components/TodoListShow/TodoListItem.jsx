@@ -1,5 +1,6 @@
 import {React, useState} from "react"
 import TodoListEditForm from "./TodoListEditForm"
+import TodoListDeleteForm from "./TodoListDeleteForm"
 
 
 const TodoListItem = ({contents}) => {
@@ -8,7 +9,7 @@ const TodoListItem = ({contents}) => {
     const [ isDeleteFormOpen, setIsDeleteFormOpen ] = useState(false)
 
 
-    return(<div className="py-2 border-b">
+    return(<div className={`py-2 px-1 border-b ${isDeleteFormOpen && "bg-red-100"}`}>
         <div className="flex gap-2 items-center">
 
             {/* show mode */}
@@ -35,6 +36,8 @@ const TodoListItem = ({contents}) => {
             {/* edit mode */}
             {isEditFormOpen && <TodoListEditForm contents={contents} setIsEditFormOpen={setIsEditFormOpen}/>}
 
+            {/* delte mode */}
+            {isDeleteFormOpen && <TodoListDeleteForm contents={contents} setIsDeleteFormOpen={setIsDeleteFormOpen}/>}
         </div>
     </div>)
 }

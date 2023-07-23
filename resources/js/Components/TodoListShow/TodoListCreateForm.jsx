@@ -20,7 +20,7 @@ const TodoListCreateForm = ({todoList}) => {
 
 
     return(<form onSubmit={handleSubmit}>
-        <div className="pt-6">
+        <div className="pt-6 px-1">
             <div className="text-gray-600 font-bold uppercase">
                 Create
             </div>
