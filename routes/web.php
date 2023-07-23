@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
 
     // TodoListItem
     Route::post('/todolist/{todo_list_id}/item/store', [TodoListItemController::class, 'store'])->name('todolistitem.store');
+    Route::get('/todolist/item/{todo_list_item_id}/update', [TodoListItemController::class, 'update'])->name('todolistitem.update');
 
     // Setting
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
