@@ -1,12 +1,19 @@
 import { React } from "react"
-import { Head } from '@inertiajs/react';
+import { Head,useForm } from '@inertiajs/react';
 import dayjs from "dayjs";
 import Layout from '@/Layouts/Layout';
 import Display from "@/Layouts/Display";
 import Section from "@/Layouts/Section";
+import TodoListItem from "@/Components/TodoListShow/TodoListItem";
+import TodoListCreateForm from "@/Components/TodoListShow/TodoListCreateForm";
 
 
 const Show = ({todo_list, todo_list_items, auth, ...props}) => {
+
+    const TodoListItemLine = !todo_list_items ? "新しいTodoアイテムは、Createフォームから作成できます。" : todo_list_items.map((item,index)=>{
+        return <TodoListItem contents={item} key={index}/>
+    })
+
 
     return(<Layout
         user={auth.user}
@@ -15,9 +22,8 @@ const Show = ({todo_list, todo_list_items, auth, ...props}) => {
         <Head title="Todo List" />
 
         <Display>
-
-            {/* todo list */}
             <Section>
+                {/* header line */}
                 <div className="flex justify-between items-end">
                     <div className="">
                         <span>Title</span> <span className="font-bold">{todo_list.title}</span>
@@ -31,6 +37,12 @@ const Show = ({todo_list, todo_list_items, auth, ...props}) => {
                         </div>
                     </div>
                 </div>
+
+                {/* Todo List */}
+                {TodoListItemLine}
+
+                {/* Create Form */}
+                <TodoListCreateForm todoList={todo_list}/>
             </Section>
         </Display>
 

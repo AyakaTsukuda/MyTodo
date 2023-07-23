@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TodoListController;
+use App\Http\Controllers\TodoListItemController;
+use App\Models\TodoListItem;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -40,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/todolist', [TodoListController::class, 'index'])->name('todolist.index');
     Route::post('/todolist/store', [TodoListController::class, 'store'])->name('todolist.store');
     Route::get('/todolist/{todo_list_id}', [TodoListController::class, 'show'])->name('todolist.show');
+
+    // TodoListItem
+    Route::post('/todolist/{todo_list_id}/item/store', [TodoListItemController::class, 'store'])->name('todolistitem.store');
 
     // Setting
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
