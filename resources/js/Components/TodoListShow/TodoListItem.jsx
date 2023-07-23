@@ -1,4 +1,5 @@
 import {React, useState} from "react"
+import TodoListEditForm from "./TodoListEditForm"
 
 
 const TodoListItem = ({contents}) => {
@@ -9,6 +10,7 @@ const TodoListItem = ({contents}) => {
 
     return(<div className="py-2 border-b">
         <div className="flex gap-2 items-center">
+
             {/* show mode */}
             {(!isEditFormOpen && !isDeleteFormOpen) && <div className="flex gap-1 w-full">
                 <a href={route("todolistitem.update", contents.id)}
@@ -29,6 +31,10 @@ const TodoListItem = ({contents}) => {
                 onClick={()=>setIsDeleteFormOpen(true)}>
                 <i className="fa-solid fa-trash-can fa-xl"></i>
             </button>}
+
+            {/* edit mode */}
+            {isEditFormOpen && <TodoListEditForm contents={contents} setIsEditFormOpen={setIsEditFormOpen}/>}
+
         </div>
     </div>)
 }
