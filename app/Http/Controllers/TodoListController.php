@@ -43,7 +43,7 @@ class TodoListController extends Controller
 
         return Inertia::render("TodoList/Show")
             ->with("todo_list", $todo_list)
-            ->with("todo_list_items", $todo_list->todo_list_items);
+            ->with("todo_list_items", $todo_list->todoListItems);
     }
 
 
