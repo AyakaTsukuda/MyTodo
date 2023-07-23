@@ -7,18 +7,20 @@ import InputError from "../InputError"
 
 const TodoListCreateForm = ({todoList}) => {
 
-    const {data, setData, processing, errors, post} = useForm({
+    const {data, setData, processing, errors, post, reset} = useForm({
         item         : ""
     })
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        post(route("todolistitem.store",todoList.id))
+        post(route("todolistitem.store",todoList.id),{
+            onSuccess: ()=>{ reset() }
+        })
     }
 
 
     return(<form onSubmit={handleSubmit}>
-        <div className="pt-4 border-t border-gray-200">
+        <div className="pt-6 px-1">
             <div className="text-gray-600 font-bold uppercase">
                 Create
             </div>

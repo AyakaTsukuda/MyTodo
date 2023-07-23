@@ -10,7 +10,9 @@ import TodoListCreateForm from "@/Components/TodoListShow/TodoListCreateForm";
 
 const Show = ({todo_list, todo_list_items, auth, ...props}) => {
 
-    const TodoListItemLine = !todo_list_items ? "新しいTodoアイテムは、Createフォームから作成できます。" : todo_list_items.map((item,index)=>{
+    const TodoListItemLine = !todo_list_items 
+        ? <div className="p-2">新しいTodoアイテムは、Createフォームから作成できます。</div> 
+        : todo_list_items.map((item,index)=>{
         return <TodoListItem contents={item} key={index}/>
     })
 
@@ -39,7 +41,9 @@ const Show = ({todo_list, todo_list_items, auth, ...props}) => {
                 </div>
 
                 {/* Todo List */}
-                {TodoListItemLine}
+                <div className="pt-6">
+                    {TodoListItemLine}
+                </div>
 
                 {/* Create Form */}
                 <TodoListCreateForm todoList={todo_list}/>
