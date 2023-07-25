@@ -14,7 +14,7 @@ class RateLabelSettingSeeder extends Seeder
     public function run(): void
     {
         DB::table("rate_label_settings")->insert([
-            "label_name" => "Default",
+            "label_name" => "やさしい",
             "created_at" => now()
         ]);
     }

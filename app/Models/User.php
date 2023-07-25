@@ -53,9 +53,9 @@ class User extends Authenticatable
     }
 
 
-    public function rateLabelSettings(): HasMany
+    public function rateLabelSetting(): HasMany
     {
-        return $this->hasMany(rateLabelSettings::class);
+        return $this->hasMany(rateLabelSetting::class);
     }
 
 }

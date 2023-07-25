@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodoListItemCreateRequest;
 use App\Models\TodoList;
 use App\Models\TodoListItem;
+use App\Services\TodoListService;
 use Illuminate\Http\Request;
+
 
 class TodoListItemController extends Controller
 {
@@ -17,6 +19,8 @@ class TodoListItemController extends Controller
             "todo_list_id" => $todo_list->id
         ]);
         $todo_list->todoListItems()->save($create_item);
+
+        (new TodoListService)->percentUpdate($todo_list);
 
         return redirect()->route("todolist.show",$todo_list_id);
     }
@@ -31,6 +35,8 @@ class TodoListItemController extends Controller
             $todo_list_item->fill([
                 "checked" => ($todo_list_item->checked==0) ? 1 : 0
             ])->save();
+
+            (new TodoListService)->percentUpdate($todo_list_item->todoList);
 
         // item update
         } else {
@@ -49,6 +55,8 @@ class TodoListItemController extends Controller
         $todo_list_item = TodoListItem::findOrFail($todo_list_item_id);
 
         $todo_list_item->delete();
+
+        (new TodoListService)->percentUpdate($todo_list_item->todoList);
 
         return redirect()->back();
     }
