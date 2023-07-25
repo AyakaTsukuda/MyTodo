@@ -33,7 +33,7 @@ class TodoList extends Model
 
     public function currentMark(): BelongsTo
     {
-        return $this->belongsTo(Mark::class);
+        return $this->belongsTo(Mark::class)->with("supportMessages");
     }
 
 

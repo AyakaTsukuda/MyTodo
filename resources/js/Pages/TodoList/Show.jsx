@@ -6,11 +6,12 @@ import Display from "@/Layouts/Display";
 import Section from "@/Layouts/Section";
 import TodoListItem from "@/Components/TodoListShow/TodoListItem";
 import TodoListCreateForm from "@/Components/TodoListShow/TodoListCreateForm";
+import TodoListPercentDisplay from "@/Components/TodoListShow/TodoListPercentDisplay";
 
 
-const Show = ({todo_list, todo_list_items, auth, ...props}) => {
+const Show = ({todo_list, todo_list_items, completed_count, auth, ...props}) => {
 
-    const TodoListItemLine = !todo_list_items 
+    const TodoListItemLine = todo_list_items.length == 0 
         ? <div className="p-2">新しいTodoアイテムは、Createフォームから作成できます。</div> 
         : todo_list_items.map((item,index)=>{
         return <TodoListItem contents={item} key={index}/>
@@ -45,8 +46,13 @@ const Show = ({todo_list, todo_list_items, auth, ...props}) => {
                     {TodoListItemLine}
                 </div>
 
-                {/* Create Form */}
+                {/* Todo List Create Form */}
                 <TodoListCreateForm todoList={todo_list}/>
+            </Section>
+
+            {/* Percent display */}
+            <Section>
+                <TodoListPercentDisplay todoList={todo_list} completedCount={completed_count}/>
             </Section>
         </Display>
 
