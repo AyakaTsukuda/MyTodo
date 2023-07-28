@@ -10,7 +10,6 @@ const TodoListTable = ({todoLists}) => {
         return <TodoListTableItem todoList={item} key={index} />
     });
 
-
     return(<div>
         {has_list && <div>
             <div className="mb-6 font-bold">Todo List</div>

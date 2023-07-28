@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
 
     // TodoListItem
     Route::post('/todolist/{todo_list_id}/item/store', [TodoListItemController::class, 'store'])->name('todolistitem.store');
-    Route::get('/todolist/item/{todo_list_item_id}/update', [TodoListItemController::class, 'update'])->name('todolistitem.update');
+    Route::put('/todolist/item/update', [TodoListItemController::class, 'update'])->name('todolistitem.update'); //<< KIMOCHIWARUIIIII
     Route::put('/todolist/item/{todo_list_item_id}/label/update', [TodoListItemController::class, 'update'])->name('todolistitem.label.update');
     Route::delete('/todolist/item/{todo_list_item_id}/delete', [TodoListItemController::class, 'destroy'])->name('todolistitem.destroy');
 

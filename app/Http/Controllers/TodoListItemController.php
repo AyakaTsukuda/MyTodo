@@ -26,25 +26,44 @@ class TodoListItemController extends Controller
     }
 
 
-    public function update(Request $request, String $todo_list_item_id)
+    public function update(Request $request)
     {
+        //validated
+
+        // dd($request->all());
+        $todo_list_item_id = $request->todo_list_item_id;
+
+
         $todo_list_item = TodoListItem::findOrFail($todo_list_item_id);
 
-        // checked update
-        if(!$request->all()){
+        if($request->from == "check_task"){
             $todo_list_item->fill([
-                "checked" => ($todo_list_item->checked==0) ? 1 : 0
+                "checked" => !$todo_list_item->checked
             ])->save();
 
             (new TodoListService)->percentUpdate($todo_list_item->todoList);
-
-        // item update
         } else {
             $request->validate(["item" => "required|max:255"]);
             $todo_list_item->fill([
                 "item" => $request->item
             ])->save();
         }
+
+        // checked update
+        // if(!$request->all()){
+        //     $todo_list_item->fill([
+        //         "checked" => ($todo_list_item->checked==0) ? 1 : 0
+        //     ])->save();
+
+        //     (new TodoListService)->percentUpdate($todo_list_item->todoList);
+
+        // // item update
+        // } else {
+        //     $request->validate(["item" => "required|max:255"]);
+        //     $todo_list_item->fill([
+        //         "item" => $request->item
+        //     ])->save();
+        // }
 
         return redirect()->back();
     }
