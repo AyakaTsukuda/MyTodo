@@ -27,10 +27,10 @@ const TodoListDeleteForm = ({contents, setIsDeleteFormOpen}) => {
             </div>
         </div>
         <button className="text-gray-600" onClick={()=>setIsDeleteFormOpen(false)} disabled={processing}>
-            <i className="fa-solid fa-reply fa-xl"></i>
+            <i className="fa-solid fa-reply text-3xl"></i>
         </button>
         <button className="text-red-600" type="submit" disabled={processing}>
-            <i className="fa-solid fa-trash-can fa-xl"></i>
+            <i className="fa-solid fa-trash-can text-3xl"></i>
         </button>
     </form>)
 }

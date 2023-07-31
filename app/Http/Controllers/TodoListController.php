@@ -41,9 +41,7 @@ class TodoListController extends Controller
     {
         $todo_list       = TodoList::with("currentMark")->findOrFail($todo_list_id);
         $todo_list_items = $todo_list->todoListItems;
-
         $completed_count = $todo_list->todoListItems()->where("checked", 1)->count();
-        // $completed_count = collect($todo_list_items)->where("checked", 1)->count();
 
         return Inertia::render("TodoList/Show")
             ->with("todo_list", $todo_list)

@@ -9,16 +9,9 @@ const TodoListItem = ({contents}) => {
     const [ isEditFormOpen, setIsEditFormOpen ]     = useState(false)
     const [ isDeleteFormOpen, setIsDeleteFormOpen ] = useState(false)
 
-    // const {data, setData, put} = useForm({
-    // content_id : contents.id,
-    // })
-
     const {checked, item} = contents
 
-    console.log(item, checked);
-
     const handleUpdate = () => {
-
         router.put(
             route("todolistitem.update", contents.id), 
             { 
@@ -28,17 +21,12 @@ const TodoListItem = ({contents}) => {
         )
     }
 
-    // console.log(contents.checked)
 
     return(<div className={`py-2 px-1 border-b ${isDeleteFormOpen && "bg-red-100"}`}>
         <div className="flex gap-2 items-center">
 
             {/* show mode */}
-            {(!isEditFormOpen && !isDeleteFormOpen) && <div className="flex gap-1 w-full">
-                {/* <a href={route("todolistitem.update", contents.id)}
-                    className={`px-1 text-white rounded-md border border-gray-300 focus:bg-gray-900 ${contents.checked==0 ? "" : "bg-gray-600"} `}>
-                    <i className="fa-solid fa-check"></i>
-                </a> */}
+            {(!isEditFormOpen && !isDeleteFormOpen) && <div className="flex gap-1 items-center w-full">
                 <button type="button" onClick={handleUpdate}
                     className="px-1">
                     {checked == 1 && <i className="far fa-square-check text-3xl"></i>}

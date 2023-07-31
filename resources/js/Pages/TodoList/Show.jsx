@@ -12,14 +12,6 @@ import TodoList from "@/Components/TodoListShow/TodoList";
 
 const Show = ({todo_list, todo_list_items, completed_count, auth, ...props}) => {
 
-    // const TodoListItemLine = todo_list_items.length == 0 
-    //     ? <div className="p-2">新しいTodoアイテムは、Createフォームから作成できます。</div> 
-    //     : todo_list_items.map((item,index)=>{
-    //     return <TodoListItem contents={item} key={index}/>
-    // })
-
-    console.log(todo_list, todo_list_items, completed_count);
-
 
     return(<Layout
         user={auth.user}
@@ -46,7 +38,6 @@ const Show = ({todo_list, todo_list_items, completed_count, auth, ...props}) => 
 
                 {/* Todo List */}
                 <div className="pt-6">
-                    {/* {TodoListItemLine} */}
                     <TodoList todo_list_items={todo_list_items}/>
                 </div>
 

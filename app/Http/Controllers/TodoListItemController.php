@@ -40,30 +40,14 @@ class TodoListItemController extends Controller
             $todo_list_item->fill([
                 "checked" => !$todo_list_item->checked
             ])->save();
-
             (new TodoListService)->percentUpdate($todo_list_item->todoList);
+
         } else {
             $request->validate(["item" => "required|max:255"]);
             $todo_list_item->fill([
                 "item" => $request->item
             ])->save();
         }
-
-        // checked update
-        // if(!$request->all()){
-        //     $todo_list_item->fill([
-        //         "checked" => ($todo_list_item->checked==0) ? 1 : 0
-        //     ])->save();
-
-        //     (new TodoListService)->percentUpdate($todo_list_item->todoList);
-
-        // // item update
-        // } else {
-        //     $request->validate(["item" => "required|max:255"]);
-        //     $todo_list_item->fill([
-        //         "item" => $request->item
-        //     ])->save();
-        // }
 
         return redirect()->back();
     }
