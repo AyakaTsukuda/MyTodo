@@ -12,7 +12,7 @@ import SecondaryButton from "@/Components/SecondaryButton";
 const Index = ({auth, todoLists, rateLabelSettings}) => {
 
     const [ isCreateFormShow, setIsCreateFormShow ] = useState(false)
-
+    const [ isDeleteFormShow, setIsDeleteFormShow ] = useState(false)
 
     return(<Layout
         user={auth.user}
@@ -39,8 +39,13 @@ const Index = ({auth, todoLists, rateLabelSettings}) => {
 
             {/* todo list */}
             <Section>
-                <TodoListTable todoLists={todoLists} />
+                <TodoListTable todoLists={todoLists} deleteMode={isDeleteFormShow} />
             </Section>
+
+            {/* delete */}
+            {!isDeleteFormShow
+                ? <SecondaryButton onClick={()=>setIsDeleteFormShow(true)} className="bg-opacity-20">Delete</SecondaryButton>
+                : <SecondaryButton onClick={()=>setIsDeleteFormShow(false)} className="bg-opacity-20">cancel</SecondaryButton>}
         </Display>
 
     </Layout>)
