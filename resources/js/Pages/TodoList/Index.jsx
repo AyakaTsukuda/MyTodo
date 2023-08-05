@@ -13,6 +13,13 @@ const Index = ({auth, todoLists, rateLabelSettings}) => {
 
     const [ isCreateFormShow, setIsCreateFormShow ] = useState(false)
     const [ isDeleteFormShow, setIsDeleteFormShow ] = useState(false)
+    const [ targetDeleteId, setTargetDeleteId ]     = useState(null)
+
+    const handleDeleteCancel = () => {
+        setIsDeleteFormShow(!isDeleteFormShow)
+        setTargetDeleteId(null)
+    }
+
 
     return(<Layout
         user={auth.user}
@@ -39,13 +46,18 @@ const Index = ({auth, todoLists, rateLabelSettings}) => {
 
             {/* todo list */}
             <Section>
-                <TodoListTable todoLists={todoLists} deleteMode={isDeleteFormShow} />
+                <TodoListTable 
+                    todoLists={todoLists} 
+                    isDeleteFormShow={isDeleteFormShow}
+                    setIsDeleteFormShow={setIsDeleteFormShow} 
+                    targetDeleteId={targetDeleteId} 
+                    setTargetDeleteId={setTargetDeleteId} />
             </Section>
 
             {/* delete */}
             {!isDeleteFormShow
-                ? <SecondaryButton onClick={()=>setIsDeleteFormShow(true)} className="bg-opacity-20">Delete</SecondaryButton>
-                : <SecondaryButton onClick={()=>setIsDeleteFormShow(false)} className="bg-opacity-20">cancel</SecondaryButton>}
+                ? <SecondaryButton onClick={handleDeleteCancel} className="bg-opacity-20">Delete</SecondaryButton>
+                : <SecondaryButton onClick={handleDeleteCancel} className="bg-opacity-20">cancel</SecondaryButton>}
         </Display>
 
     </Layout>)
