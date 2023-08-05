@@ -21,7 +21,7 @@ const TodoListEditForm = ({contents, setIsEditFormOpen}) => {
     return(<form onSubmit={handleSubmit} className="w-full flex gap-2">
         <div className="flex gap-1 w-full">
             <div className="my-1 px-1 text-gray-200 bg-gray-200 rounded-md border border-gray-300">
-                <i class="fa-solid fa-check"></i>
+                <i className="fa-solid fa-check"></i>
             </div>
             <div className="w-full">
                 <TextInput
