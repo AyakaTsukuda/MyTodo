@@ -58,6 +58,8 @@ class TodoListController extends Controller
 
     public function destroy(String $todo_list_id)
     {
-        // destroy...
+        $todo_list = TodoList::findOrFail($todo_list_id);
+        $todo_list->delete();
+        return redirect()->back();
     }
 }

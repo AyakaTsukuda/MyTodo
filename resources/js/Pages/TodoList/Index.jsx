@@ -12,6 +12,13 @@ import SecondaryButton from "@/Components/SecondaryButton";
 const Index = ({auth, todoLists, rateLabelSettings}) => {
 
     const [ isCreateFormShow, setIsCreateFormShow ] = useState(false)
+    const [ isDeleteFormShow, setIsDeleteFormShow ] = useState(false)
+    const [ targetDeleteId, setTargetDeleteId ]     = useState(null)
+
+    const handleDeleteCancel = () => {
+        setIsDeleteFormShow(!isDeleteFormShow)
+        setTargetDeleteId(null)
+    }
 
 
     return(<Layout
@@ -39,8 +46,18 @@ const Index = ({auth, todoLists, rateLabelSettings}) => {
 
             {/* todo list */}
             <Section>
-                <TodoListTable todoLists={todoLists} />
+                <TodoListTable 
+                    todoLists={todoLists} 
+                    isDeleteFormShow={isDeleteFormShow}
+                    setIsDeleteFormShow={setIsDeleteFormShow} 
+                    targetDeleteId={targetDeleteId} 
+                    setTargetDeleteId={setTargetDeleteId} />
             </Section>
+
+            {/* delete */}
+            {!isDeleteFormShow
+                ? <SecondaryButton onClick={handleDeleteCancel} className="bg-opacity-20">Delete</SecondaryButton>
+                : <SecondaryButton onClick={handleDeleteCancel} className="bg-opacity-20">cancel</SecondaryButton>}
         </Display>
 
     </Layout>)

@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/todolist', [TodoListController::class, 'index'])->name('todolist.index');
     Route::post('/todolist/store', [TodoListController::class, 'store'])->name('todolist.store');
     Route::get('/todolist/{todo_list_id}', [TodoListController::class, 'show'])->name('todolist.show');
+    Route::delete('/todoList/{todo_list_id}/destroy', [TodoListController::class, 'destroy'])->name('todolist.destroy');
 
     // TodoListItem
     Route::post('/todolist/{todo_list_id}/item/store', [TodoListItemController::class, 'store'])->name('todolistitem.store');
