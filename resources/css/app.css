@@ -20,6 +20,13 @@
     border-bottom: 1px solid rgb(229 231 235);
 }
 
+.label {
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    line-height: 0.875rem;
+    color: rgb(100 116 139);
+}
+
 .text-xxs {
     font-size: 0.5rem;
     line-height: 0;

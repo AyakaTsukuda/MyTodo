@@ -24,6 +24,9 @@ export default function Layout({ user, header, children }) {
                                 <NavLink href={route('todolist.index')} active={route().current('todolist.*')}>
                                     List
                                 </NavLink>
+                                <NavLink href={route('setting.index')} active={route().current('setting.*')}>
+                                    Setting
+                                </NavLink>
                             </div>
                         </div>
 
@@ -94,6 +97,9 @@ export default function Layout({ user, header, children }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('todolist.index')} active={route().current('todolist.*')}>
                             List
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('setting.index')} active={route().current('setting.*')}>
+                            Setting
                         </ResponsiveNavLink>
                     </div>
 
