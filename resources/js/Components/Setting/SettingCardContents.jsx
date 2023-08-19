@@ -11,11 +11,10 @@ const SettingCardContents = ({rateLabels}) => {
             <div className="pt-2">
                 ~ {item.percent} %
             </div>
-            {/* TODO : あいだに線入れるのってどうやるんだっけ・・・？ */}
         </div>)
     })
 
-    return(<div className="mt-4 grid grid-cols-6 place-items-center">
+    return(<div className="mt-4 grid grid-cols-6 place-items-center divide-x">
         {settingValues}
     </div>)
 }

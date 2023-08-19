@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
 
     // Setting
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
+    Route::post('/setting/store', [SettingController::class, 'store'])->name('setting.store');
 });
 
 
