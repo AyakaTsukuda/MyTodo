@@ -20,6 +20,7 @@ class SettingPercentValidation implements ValidationRule
         $msg = "入力値に誤りがあります。";
         if(!is_array($value)) $fail($msg);
 
+        $before = null;
         foreach($value as $item){
             if(!isset($item["mark_id"]) || !isset($item["percent"])) $fail($msg);
 
@@ -28,7 +29,10 @@ class SettingPercentValidation implements ValidationRule
 
             if(!is_numeric($item["percent"])) $fail($msg);
 
-            // 前のvalueと比べて。。。
+            if($before){
+                ($item["percent"] < $before) && $fail($msg);
+            }
+            $before = $item["percent"];
         }
     }
 }
