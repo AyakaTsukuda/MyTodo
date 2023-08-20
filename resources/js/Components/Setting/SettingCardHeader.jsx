@@ -1,5 +1,6 @@
 import React from "react"
 import dayjs from "dayjs";
+import PrimaryButton from "../PrimaryButton";
 
 
 const SettingCardHeader = ({cardItem}) => {
@@ -32,6 +33,10 @@ const SettingCardHeader = ({cardItem}) => {
                     ? <span className="pl-4"> - </span> 
                     : dayjs(cardItem.updated_at).format("YYYY/MM/DD")}
             </div>
+        </div>
+        {/* edit btn */}
+        <div>
+            <PrimaryButton>Edit</PrimaryButton>
         </div>
     </div>)
 }

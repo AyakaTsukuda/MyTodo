@@ -10,11 +10,13 @@ import Section from "@/Layouts/Section";
 
 const Index = ({auth, rateLabelSettings, marks}) => {
 
-    const cardList = rateLabelSettings.map((item, index)=>{
-        return <SettingCard rateLabelSetting={item} key={index}/>
-    })
-
     const [ isCreateMode, setIsCreateMode ] = useState(false)
+
+    const cardList = rateLabelSettings.map((item, index)=>{
+        return <SettingCard 
+            rateLabelSetting={item} 
+            key={index}/>
+    })
 
 
     return(<Layout

@@ -41,4 +41,11 @@ class SettingController extends Controller
 
         return redirect()->route("setting.index");
     }
+
+
+    public function destroy(Request $request)
+    {
+        dd($request);
+        // @TODO :　Deleteアクションを作ってください。。。
+    }
 }
