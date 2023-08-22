@@ -8,12 +8,12 @@ import SettingDelete from "./SettingDelete";
 const SettingCard = (rateLabelSetting) => {
 
     const cardItem = rateLabelSetting.rateLabelSetting
-
+    const canDelete = (cardItem.id==1 || 0<cardItem.num_of_use) ? false : true
 
     return(<Section>
         <SettingCardHeader cardItem={cardItem}/>
         <SettingCardContents rateLabels={cardItem.rate_settings}/>
-        <SettingDelete rateLabelSetting={cardItem}/>
+        {canDelete && <SettingDelete rateLabelSetting={cardItem}/>}
     </Section>)
 }
 

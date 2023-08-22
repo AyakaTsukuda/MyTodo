@@ -45,7 +45,19 @@ class SettingController extends Controller
 
     public function destroy(Request $request)
     {
-        dd($request);
-        // @TODO :　Deleteアクションを作ってください。。。
+        $validated = $request->validate([
+            'id' => 'required|numeric|exists:rate_label_settings,id',
+        ]);
+
+        $rateLabelSetting = RateLabelSetting::findOrFail($request->id);
+        if($rateLabelSetting->user_id != Auth::user()->id){
+            abort(404);
+        }
+        if(0 < $rateLabelSetting->num_of_use){
+            abort(404);
+        }
+
+        $rateLabelSetting->delete();
+        return redirect()->route("setting.index"); // foreign key 制約に引っかかって消せない。原因をしらべてください。
     }
 }
