@@ -5,6 +5,8 @@ import PrimaryButton from "../PrimaryButton";
 
 const SettingCardHeader = ({cardItem}) => {
 
+    const canEdit = (cardItem.id==1 || 0<cardItem.num_of_use) ? false : true
+
 
     return(<div className="flex gap-4">
         {/* label */}
@@ -35,8 +37,8 @@ const SettingCardHeader = ({cardItem}) => {
             </div>
         </div>
         {/* edit btn */}
-        <div>
-            <PrimaryButton>Edit</PrimaryButton>
+        <div className="w-20">
+            {canEdit && <PrimaryButton>Edit</PrimaryButton>}
         </div>
     </div>)
 }

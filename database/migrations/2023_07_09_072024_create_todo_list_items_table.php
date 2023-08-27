@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('todo_list_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("todo_list_id")->cascadeOnUpdate()->cascadeOnDelete()->constrained();
+            $table->foreignId("todo_list_id")->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->tinyInteger("checked")->default(0);
             $table->string("item",255);
             $table->timestamps();

@@ -49,6 +49,8 @@ class SettingController extends Controller
             'id' => 'required|numeric|exists:rate_label_settings,id',
         ]);
 
+        // @Todo: 既に利用されている設定は消せない。
+
         $rateLabelSetting = RateLabelSetting::findOrFail($request->id);
         if($rateLabelSetting->user_id != Auth::user()->id){
             abort(404);
@@ -58,6 +60,6 @@ class SettingController extends Controller
         }
 
         $rateLabelSetting->delete();
-        return redirect()->route("setting.index"); // foreign key 制約に引っかかって消せない。原因をしらべてください。
+        return redirect()->route("setting.index");
     }
 }
