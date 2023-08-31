@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\TodoListController;
 use App\Http\Controllers\TodoListItemController;
 use App\Models\TodoListItem;
@@ -54,6 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
 });
 
+// context test
+Route::get('/test', [TestController::class, 'index'])->name('test.index');
 
 
 require __DIR__.'/auth.php';
