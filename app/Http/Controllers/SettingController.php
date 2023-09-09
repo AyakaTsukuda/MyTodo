@@ -6,6 +6,7 @@ use App\Http\Requests\SettingCreateRequest;
 use App\Models\Mark;
 use App\Models\RateLabelSetting;
 use App\Models\RateSetting;
+use App\Rules\SettingNumOfUseValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -46,16 +47,11 @@ class SettingController extends Controller
     public function destroy(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|numeric|exists:rate_label_settings,id',
+            'id' => ['required','numeric','exists:rate_label_settings,id',new SettingNumOfUseValidation],
         ]);
-
-        // @Todo: 既に利用されている設定は消せない。
 
         $rateLabelSetting = RateLabelSetting::findOrFail($request->id);
         if($rateLabelSetting->user_id != Auth::user()->id){
-            abort(404);
-        }
-        if(0 < $rateLabelSetting->num_of_use){
             abort(404);
         }
 

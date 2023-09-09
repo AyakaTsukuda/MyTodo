@@ -33,6 +33,10 @@ class TodoListController extends Controller
         ]);
         $todo_list->save();
 
+        $rate_label_setting = RateLabelSetting::find($request->rate_label_setting_id);
+        $rate_label_setting->num_of_use = $rate_label_setting->num_of_use +1;
+        $rate_label_setting->save();
+
         return redirect()->route("todolist.show", $todo_list->id);
     }
 
