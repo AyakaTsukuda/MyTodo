@@ -1,21 +1,29 @@
-import { React,useState } from "react"
+import { React,useState,useContext } from "react"
+import { Marks } from "@/Pages/Setting/Index"
 import { useForm } from "@inertiajs/react"
 import TextInput from "../TextInput"
 import PrimaryButton from "../PrimaryButton"
 import InputError from "../InputError"
 
 
-const SettingForm = ({setIsCreateMode, marks, rateLabelSetting=null}) => {
+const SettingForm = ({setIsFormMode=false, setIsEditMode=false, rateLabelSetting=null}) => {
+
+    const marks = useContext(Marks)
 
     const defaultPercents = marks.reduce((result,mark,index)=>{
-        const defaultPercent = index==5 ? 100 : 0
+        let setupPercent   = !rateLabelSetting ? 0 : rateLabelSetting.rate_settings[index].percent
+        let defaultPercent = index==5 ? 100 : setupPercent
         result[index] = {mark_id:mark.id, percent:defaultPercent}
         return result
     },[])
 
-    const { data, setData, processing, errors, post } = useForm({
-        percents : defaultPercents,
-        label    : ""
+    const defaultLabel = !rateLabelSetting ? "" : rateLabelSetting.label_name
+    const defaultId    = !rateLabelSetting ? "" : rateLabelSetting.id   
+
+    const { data, setData, processing, errors, post, put } = useForm({
+        rate_label_setting_id : defaultId,
+        percents              : defaultPercents,
+        label                 : defaultLabel
     })
 
     const handlePercentOnChange = (e,index) => {
@@ -50,10 +58,12 @@ const SettingForm = ({setIsCreateMode, marks, rateLabelSetting=null}) => {
         if(rateValueCheck()){
             if(!rateLabelSetting){
                 post(route("setting.store"),{
-                    onSuccess: ()=>setIsCreateMode(false)
+                    onSuccess: ()=>{!setIsFormMode(false)}
                 })
             } else {
-                // todo...
+                put(route("setting.update"),{
+                    onSuccess: ()=>{!setIsFormMode(false)}
+                })
             }
         }
     }
@@ -91,7 +101,7 @@ const SettingForm = ({setIsCreateMode, marks, rateLabelSetting=null}) => {
                     <InputError message={errors.label}/>
                 </div>
 
-                <button onClick={()=>setIsCreateMode(false)}>
+                <button onClick={()=>{!setIsCreateMode ? setIsEditMode(false) : setIsCreateMode(false)}}>
                     <i className="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
@@ -102,7 +112,7 @@ const SettingForm = ({setIsCreateMode, marks, rateLabelSetting=null}) => {
             </div>
 
             <div className="mt-6 flex justify-center">
-                <PrimaryButton type="submit" disabled={processing||isSubmitDisabled}>New Create</PrimaryButton>
+                <PrimaryButton type="submit" disabled={processing||isSubmitDisabled}>{!rateLabelSetting ? "New Create" : "Edit"}</PrimaryButton>
             </div>
         </form>
     </div>)

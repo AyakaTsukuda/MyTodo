@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import PrimaryButton from "../PrimaryButton";
 
 
-const SettingCardHeader = ({cardItem}) => {
+const SettingCardHeader = ({cardItem, setIsEditMode}) => {
 
     const canEdit = (cardItem.id==1 || 0<cardItem.num_of_use) ? false : true
 
@@ -38,7 +38,7 @@ const SettingCardHeader = ({cardItem}) => {
         </div>
         {/* edit btn */}
         <div className="w-20">
-            {canEdit && <PrimaryButton>Edit</PrimaryButton>}
+            {canEdit && <PrimaryButton onClick={()=>setIsEditMode(true)}>Edit</PrimaryButton>}
         </div>
     </div>)
 }

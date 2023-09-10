@@ -58,4 +58,18 @@ class SettingController extends Controller
         $rateLabelSetting->delete();
         return redirect()->route("setting.index");
     }
+
+
+    public function update(Request $request)
+    {
+        $rate_label_setting = RateLabelSetting::findOrFail($request->rate_label_setting_id);
+        $rate_label_setting->label_name = $request->label;
+        $rate_label_setting->save();
+
+        foreach($request->percents as $item){
+            $rate_setting = RateSetting::where(["mark_id"=>$item["mark_id"], "rate_label_setting_id"=>$rate_label_setting->id])->first();
+            $rate_setting->percent = $item["percent"];
+            $rate_setting->save();
+        }
+    }
 }

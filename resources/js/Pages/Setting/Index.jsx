@@ -1,4 +1,5 @@
 import { React,useState } from "react"
+import { createContext } from 'react';
 import { Head } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
 import Display from "@/Layouts/Display";
@@ -8,13 +9,16 @@ import SettingForm from "@/Components/Setting/SettingForm";
 import Section from "@/Layouts/Section";
 
 
+export const Marks = createContext();
+
+
 const Index = ({auth, rateLabelSettings, marks}) => {
 
     const [ isCreateMode, setIsCreateMode ] = useState(false)
 
     const cardList = rateLabelSettings.map((item, index)=>{
         return <SettingCard 
-            rateLabelSetting={item} 
+            rateLabelSetting={item}
             key={index}/>
     })
 
@@ -25,15 +29,17 @@ const Index = ({auth, rateLabelSettings, marks}) => {
         <Head title="Setting" />
 
         <Display>
-            {!isCreateMode && <div className="mb-4 flex justify-end">
-                <PrimaryButton onClick={()=>setIsCreateMode(true)}>Create</PrimaryButton>
-            </div>}
+            <Marks.Provider value={marks}>
+                {!isCreateMode && <div className="mb-4 flex justify-end">
+                    <PrimaryButton onClick={()=>setIsCreateMode(true)}>Create</PrimaryButton>
+                </div>}
 
-            {isCreateMode && <Section>
-                <SettingForm setIsCreateMode={setIsCreateMode} marks={marks}/>
-            </Section>}
+                {isCreateMode && <Section>
+                    <SettingForm setIsFormMode={setIsCreateMode} marks={marks}/>
+                </Section>}
 
-            {cardList}
+                {cardList}
+            </Marks.Provider>
         </Display>
 
     </Layout>)
