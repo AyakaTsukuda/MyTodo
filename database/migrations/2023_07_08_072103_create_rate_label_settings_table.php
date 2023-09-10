@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("label_name");
             $table->integer("num_of_use")->nullable()->default(0);
-            $table->foreignId("user_id")->nullable()->default(null)->cascadeOnUpdate()->cascadeOnDelete()->constrained();
+            $table->foreignId("user_id")->nullable()->default(null)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

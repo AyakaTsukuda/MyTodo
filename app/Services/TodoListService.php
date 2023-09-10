@@ -9,8 +9,8 @@ class TodoListService
     {
         // todoList percent update
         $items           = $todo_list->todoListItems;
-        $all_count       = collect($items)->count();
-        $completed_count = collect($items)->where("checked", 1)->count();
+        $all_count       = $items->count();
+        $completed_count = $items->where("checked", 1)->count();
         $percent         = round(($completed_count / $all_count) * 100);
 
         // todoList current mark update

@@ -52,6 +52,9 @@ Route::middleware('auth')->group(function () {
 
     // Setting
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
+    Route::post('/setting/store', [SettingController::class, 'store'])->name('setting.store');
+    Route::delete('/setting/delete', [SettingController::class, 'destroy'])->name('setting.destroy');
+    Route::put('/setting/update', [SettingController::class, 'update'])->name('setting.update');
 });
 
 

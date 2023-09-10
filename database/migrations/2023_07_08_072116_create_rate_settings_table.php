@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rate_settings', function (Blueprint $table) {
             $table->id();
             $table->foreignId("mark_id");
-            $table->foreignId("rate_label_setting_id")->cascadeOnUpdate()->cascadeOnDelete()->constrained();
+            $table->foreignId("rate_label_setting_id")->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->integer("percent");
             $table->timestamps();
         });
