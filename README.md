@@ -6,6 +6,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+## MyTodoとは
+
+タスクを管理するためのツールです。達成度によってマークが変わっていくので、自身の進捗を感覚で確認できます。
+
 
 ## About Laravel
 
